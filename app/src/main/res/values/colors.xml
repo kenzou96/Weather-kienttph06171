@@ -2,9 +2,16 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#fcfce2</color>
     <color name="nhietdo">#f10404</color>
     <color name="doAm">#1a1fb4</color>
     <color name="gio">#12a223</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#ffffff</color>
+    <string name="delete_text">X</string>
+    <color name="colorBackground">#939ae9</color>
+    <color name="colorBottomBackground">#729101</color>
+    <color name="colorCircleStroke">#314df0</color>
+    <color name="colorSubTitle">#38455B</color>
 
 </resources>

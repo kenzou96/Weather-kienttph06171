@@ -1,183 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MapsActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/colorBackground"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_weight="12"
-            android:layout_height="wrap_content"
-            android:id="@+id/edtSearch"
-            android:hint="Tên thành phố"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Search"
-            android:id="@+id/btnSearch"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="18dp"
-        android:layout_weight="1"
-        android:id="@+id/txtvlat"
-        android:gravity="center"
-        android:text="Vĩ độ: "/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="18dp"
-        android:layout_weight="1"
-        android:id="@+id/txtvlon"
-        android:gravity="center"
-        android:text="Kinh độ: "/>
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtvTenTP"
-        android:layout_gravity="center"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:text="Thành phố: "/>
-
-
-    <TextView
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:id="@+id/txtvTenQG"
-        android:text="Quốc gia:"/>
-
-    <ImageView
-        android:layout_marginTop="20dp"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_gravity="center"
-        android:id="@+id/imgIcon"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:id="@+id/txtvTrangThai"
-        android:textStyle="bold"
-        android:textSize="25dp"
-        android:textColor="@color/colorPrimary"
-        android:text="Trạng thái"
-
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="50dp">
-
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1">
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:src="@drawable/icontemp"/>
-            <TextView
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_weight="12"
+                android:layout_height="wrap_content"
+                android:id="@+id/edtSearch"
+                android:hint="Tên thành phố"/>
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                android:textSize="15dp"
-                android:textColor="@color/nhietdo"
-                android:id="@+id/txtvNhietDo"
-                android:text="Nhiệt độ"/>
+                android:layout_weight="1"
+                android:text="Search"
+                android:id="@+id/btnSearch"/>
+
         </LinearLayout>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/txtvTenTP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_gravity="center">
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:src="@drawable/icondoam"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtvDoAm"
-                android:textStyle="bold"
-                android:textSize="15dp"
-                android:textColor="@color/doAm"
-                android:text="Độ ẩm"
-                android:layout_gravity="center"/>
-        </LinearLayout>
+            android:layout_gravity="center_horizontal"
+            android:text="@string/city_country"
+            android:textSize="24dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/colorWhite"/>
+
+        <!--<TextView-->
+            <!--android:id="@+id/txtvTenQG"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:text="@string/date_today"-->
+            <!--android:textSize="14dp"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:textColor="@color/colorWhite"/>-->
+
+        <ImageView
+            android:id="@+id/imgIcon"
+            android:layout_marginRight="4dp"
+            android:layout_width="250dp"
+            android:layout_height="160dp"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/app_name"
+            android:layout_marginTop="24dp"/>
+        <TextView
+            android:id="@+id/txtvTrangThai"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textSize="30dp"
+            android:textColor="@color/colorWhite"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            />
+
+
+        <com.github.pavlospt.CircleView
+            android:layout_marginTop="10dp"
+            android:id="@+id/txtvNhietDo"
+            android:layout_width="180dp"
+            android:layout_height="140dp"
+            app:cv_fillColor="@color/colorBackground"
+            app:cv_strokeColorValue="@color/colorCircleStroke"
+            app:cv_backgroundColorValue="@color/colorCircleStroke"
+            app:cv_titleColor="@color/colorWhite"
+            app:cv_titleSize="30dp"
+            app:cv_titleText="@string/current_temperature"
+            app:cv_subtitleSize="0dp"
+            android:layout_gravity="center_horizontal"/>
+
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_gravity="center">
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:src="@drawable/icongio"/>
-            <TextView
-                android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtvGio"
-                android:textStyle="bold"
-                android:textSize="15dp"
-                android:textColor="@color/gio"
-                android:text="Tốc độ gió"
-                android:layout_gravity="center"/>
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorSubTitle"
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    android:text="@string/wind"/>
+
+                <TextView
+                    android:id="@+id/txtvGio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="22dp"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/wind_speed"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/btnXem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:elevation="4dp"
+                    android:layout_marginTop="12dp"
+                    android:src="@drawable/cross"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingRight="26dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorSubTitle"
+                    android:textSize="22dp"
+                    android:layout_gravity="right"
+                    android:textStyle="bold"
+                    android:text="@string/humidity"/>
+
+                <TextView
+                    android:id="@+id/txtvDoAm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:layout_gravity="right"
+                    android:textSize="22dp"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/humidity_rate"/>
+
+            </LinearLayout>
+
         </LinearLayout>
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            tools:context=".MapsActivity"
+            android:layout_gravity="center"/>
+
+
     </LinearLayout>
 
-
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
-    android:layout_marginTop="40dp"
-    android:layout_marginLeft="30dp"
-    android:layout_marginRight="30dp"
-    android:layout_width="match_parent"
-    android:layout_height="300dp"
-    tools:context=".MapsActivity"
-    android:layout_gravity="center"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-       android:layout_gravity="center"
-        android:text="Xem bản đồ"
-        android:id="@+id/btnMap"/>
 </LinearLayout>

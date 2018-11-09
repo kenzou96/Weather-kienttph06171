@@ -1,11 +1,13 @@
 package com.vn.edu.poly.map;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,12 +38,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private TextView txtvTenQG;
     private ImageView imgIcon;
     private TextView txtvTrangThai;
-    private TextView txtvNhietDo;
+    private com.github.pavlospt.CircleView txtvNhietDo;
     private TextView txtvDoAm;
     private TextView txtvGio;
-    private TextView txtvlat;
-    private TextView txtvlon;
-    private Button btnMap;
+    private ImageButton btnXem;
 
 
 
@@ -69,35 +69,91 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String name = jsonObject.getString("name");
-                            txtvTenTP.setText("Thành phố: " + name);
+
+
 
                             JSONArray jsonArrayWeather = jsonObject.getJSONArray("weather");
                             JSONObject jsonObjectWeather = jsonArrayWeather.getJSONObject(0);
                             String status = jsonObjectWeather.getString("main");
                             String icon = jsonObjectWeather.getString("icon");
-                            txtvTrangThai.setText(status);
-                            Picasso.with(MapsActivity.this).load("https://openweathermap.org/img/w/" + icon + ".png").into(imgIcon);
+
+                            Log.d("trangthai", "trang thai la: "+status );
+                            Log.d("icon", icon );
+                            switch (status){
+                                case "Rain": txtvTrangThai.setText("Trời mưa");
+                                break;
+                                case "Clouds": txtvTrangThai.setText("Trời nhiều mây");
+                                break;
+                                case "Clear": txtvTrangThai.setText("Trời quang");
+                                break;
+                                case "Mist": txtvTrangThai.setText("Sương mù");
+                                break;
+                                default: txtvTrangThai.setText(status);
+                            }
+
+                            switch (icon){
+
+                                case "01d": imgIcon.setImageResource(R.drawable.mattroi);
+                                    break;
+                                case "04d": imgIcon.setImageResource(R.drawable.cloud);
+                                    break;
+                                case "10d": imgIcon.setImageResource(R.drawable.may_mua_mattroi);
+                                    break;
+
+                                case "04n": imgIcon.setImageResource(R.drawable.cloudy);
+                                    break;
+                                case "10n": imgIcon.setImageResource(R.drawable.rain);
+                                    break;
+
+                                case "50n": imgIcon.setImageResource(R.drawable.fog);
+                                    break;
+
+                                default:
+                                    Picasso.with(MapsActivity.this).load("https://openweathermap.org/img/w/" + icon + ".png").into(imgIcon);
+                            }
+
+
+
+
+//                            if(icon.equalsIgnoreCase("10d")){
+//                                imgIcon.setImageResource(R.drawable.may_mua_mattroi);
+//                            }
+//                            else if(icon.equalsIgnoreCase("01d")){
+//                                imgIcon.setImageResource(R.drawable.mattroi);
+//                            }
+//                            else if(icon.equalsIgnoreCase("50n")){
+//                                imgIcon.setImageResource(R.drawable.fog);
+//                            }
+//                            else {
+//                                Picasso.with(MapsActivity.this).load("https://openweathermap.org/img/w/" + icon + ".png").into(imgIcon);
+//                            }
+
+
+
 
                             JSONObject jsonObjectMain = jsonObject.getJSONObject("main");
                             String nhietDo = jsonObjectMain.getString("temp");
                             String doAm = jsonObjectMain.getString("humidity");
 
-                            txtvDoAm.setText("Độ ẩm: " + doAm + "%");
-                            txtvNhietDo.setText("Nhiệt độ : " + nhietDo + " °C");
+                            txtvDoAm.setText(  doAm + "%");
+                            txtvNhietDo.setTitleText( nhietDo + " °C");
 
                             JSONObject jsonObjectSys = jsonObject.getJSONObject("sys");
                             String country = jsonObjectSys.getString("country");
-                            txtvTenQG.setText("Quốc gia: " + country);
+                            txtvTenTP.setText("Thành phố: " + name +" , " +country);
 
                             JSONObject jsonObjectWind = jsonObject.getJSONObject("wind");
                             String gio = jsonObjectWind.getString("speed");
-                            txtvGio.setText("Tốc độ gió " + gio + " m/s");
+                            txtvGio.setText(  gio + " m/s");
 
                             JSONObject jsonObjectCoord = jsonObject.getJSONObject("coord");
-                            String lon = jsonObjectCoord.getString("lon");
-                            String lat = jsonObjectCoord.getString("lat");
-                            txtvlon.setText(lon);
-                            txtvlat.setText(lat);
+                            double lon = jsonObjectCoord.getDouble("lon");
+                            double lat = jsonObjectCoord.getDouble("lat");
+
+                            String ten = edtSearch.getText().toString();
+                            LatLng a = new LatLng(lat, lon);
+                            mMap.addMarker(new MarkerOptions().position(a).title(ten));
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(a, 7f));
 
 
                         } catch (JSONException e) {
@@ -134,18 +190,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 String city = edtSearch.getText().toString();
                 getData(city);
 
-
             }
         });
-        btnMap.setOnClickListener(new View.OnClickListener() {
+        btnXem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 double lon = Double.parseDouble(txtvlon.getText().toString());
-                 double lat = Double.parseDouble(txtvlat.getText().toString());
-                String name = edtSearch.getText().toString();
-                LatLng a = new LatLng(lat, lon);
-                mMap.addMarker(new MarkerOptions().position(a).title(name));
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(a, 7f));
+                String city = edtSearch.getText().toString();
+                Intent intent = new Intent(MapsActivity.this,ListWeatherActivity.class);
+                intent.putExtra("tenTP",city);
+                startActivity(intent);
+
             }
         });
 
@@ -157,17 +211,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         edtSearch = (EditText) findViewById(R.id.edtSearch);
         btnSearch = (Button) findViewById(R.id.btnSearch);
         txtvTenTP = (TextView) findViewById(R.id.txtvTenTP);
-        txtvTenQG = (TextView) findViewById(R.id.txtvTenQG);
+//        txtvTenQG = (TextView) findViewById(R.id.txtvTenQG);
         imgIcon = (ImageView) findViewById(R.id.imgIcon);
         txtvTrangThai = (TextView) findViewById(R.id.txtvTrangThai);
-        txtvNhietDo = (TextView) findViewById(R.id.txtvNhietDo);
+        txtvNhietDo =  findViewById(R.id.txtvNhietDo);
         txtvDoAm = (TextView) findViewById(R.id.txtvDoAm);
         txtvGio = (TextView) findViewById(R.id.txtvGio);
-
-        txtvlat = (TextView) findViewById(R.id.txtvlat);
-        txtvlon = (TextView) findViewById(R.id.txtvlon);
-
-        btnMap = (Button) findViewById(R.id.btnMap);
+        btnXem =  findViewById(R.id.btnXem);
 
     }
 }
