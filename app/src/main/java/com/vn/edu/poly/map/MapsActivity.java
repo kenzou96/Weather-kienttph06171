@@ -33,7 +33,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private EditText edtSearch;
-    private Button btnSearch;
+    private ImageButton btnSearch;
     private TextView txtvTenTP;
     private TextView txtvTenQG;
     private ImageView imgIcon;
@@ -220,7 +220,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void initView() {
         edtSearch = (EditText) findViewById(R.id.edtSearch);
-        btnSearch = (Button) findViewById(R.id.btnSearch);
+        btnSearch = (ImageButton) findViewById(R.id.btnSearch);
         txtvTenTP = (TextView) findViewById(R.id.txtvTenTP);
 //        txtvTenQG = (TextView) findViewById(R.id.txtvTenQG);
         imgIcon = (ImageView) findViewById(R.id.imgIcon);

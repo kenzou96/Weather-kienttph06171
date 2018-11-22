@@ -26,11 +26,13 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/edtSearch"
                 android:hint="Tên thành phố"/>
-            <Button
+            <ImageButton
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Tìm"
+                android:src="@drawable/search"
+                android:background="@color/colorbackgrond"
                 android:id="@+id/btnSearch"/>
 
         </LinearLayout>
