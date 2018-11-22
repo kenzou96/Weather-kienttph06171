@@ -97,15 +97,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     break;
                                 case "04d": imgIcon.setImageResource(R.drawable.cloud);
                                     break;
+                                case "03n": imgIcon.setImageResource(R.drawable.cloud);
+                                    break;
+                                case "09d": imgIcon.setImageResource(R.drawable.rain);
+                                    break;
                                 case "10d": imgIcon.setImageResource(R.drawable.may_mua_mattroi);
                                     break;
 
                                 case "04n": imgIcon.setImageResource(R.drawable.cloudy);
                                     break;
+                                case "01n": imgIcon.setImageResource(R.drawable.moon);
+                                    break;
+                                case "02n": imgIcon.setImageResource(R.drawable.moon);
+                                    break;
+                                    //may mua mat trang
+
                                 case "10n": imgIcon.setImageResource(R.drawable.rain);
                                     break;
-
                                 case "50n": imgIcon.setImageResource(R.drawable.fog);
+                                    break;
+                                case "50d": imgIcon.setImageResource(R.drawable.fog);
                                     break;
 
                                 default:
@@ -153,7 +164,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             String ten = edtSearch.getText().toString();
                             LatLng a = new LatLng(lat, lon);
                             mMap.addMarker(new MarkerOptions().position(a).title(ten));
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(a, 7f));
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(a, 8f));
 
 
                         } catch (JSONException e) {
