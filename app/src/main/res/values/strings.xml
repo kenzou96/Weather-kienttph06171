@@ -6,9 +6,9 @@
     <string name="current_temperature">0</string>
     <string name="weather_information">Partly Cloud</string>
     <string name="temp_information">26, partly cloudy</string>
-    <string name="wind">Gió</string>
+    <string name="wind">Tốc độ gió: </string>
     <string name="wind_speed">0 km/h</string>
-    <string name="humidity">Độ ẩm</string>
+    <string name="humidity">Độ ẩm: </string>
     <string name="humidity_rate">0%</string>
     <string name="day_of_week">Mon</string>
     <string name="location_hints">Type city or postcode</string>

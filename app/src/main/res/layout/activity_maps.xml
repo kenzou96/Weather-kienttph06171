@@ -45,7 +45,8 @@
             android:text="@string/city_country"
             android:textSize="24dp"
             android:layout_marginTop="16dp"
-            android:textColor="@color/colorWhite"/>
+            android:textColor="@color/colorWhite"
+            android:layout_marginBottom="5dp"/>
 
         <!--<TextView-->
             <!--android:id="@+id/txtvTenQG"-->
@@ -64,7 +65,8 @@
             android:layout_height="160dp"
             android:layout_gravity="center_horizontal"
             android:contentDescription="@string/app_name"
-            android:layout_marginTop="24dp"/>
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="5dp"/>
         <TextView
             android:id="@+id/txtvTrangThai"
             android:layout_width="match_parent"
@@ -74,19 +76,21 @@
             android:layout_marginTop="8dp"
             android:gravity="center"
             android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="5dp"
             />
 
 
         <com.github.pavlospt.CircleView
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
             android:id="@+id/txtvNhietDo"
-            android:layout_width="180dp"
-            android:layout_height="140dp"
+            android:layout_width="280dp"
+            android:layout_height="240dp"
             app:cv_fillColor="@color/colorBackground"
             app:cv_strokeColorValue="@color/colorCircleStroke"
             app:cv_backgroundColorValue="@color/colorCircleStroke"
             app:cv_titleColor="@color/colorWhite"
-            app:cv_titleSize="30dp"
+            app:cv_titleSize="50dp"
             app:cv_titleText="@string/current_temperature"
             app:cv_subtitleSize="0dp"
             android:layout_gravity="center_horizontal"/>
@@ -111,7 +115,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorSubTitle"
-                    android:textSize="22dp"
+                    android:textSize="25dp"
                     android:textStyle="bold"
                     android:text="@string/wind"/>
 
@@ -155,7 +159,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorSubTitle"
-                    android:textSize="22dp"
+                    android:textSize="25dp"
                     android:layout_gravity="right"
                     android:textStyle="bold"
                     android:text="@string/humidity"/>
