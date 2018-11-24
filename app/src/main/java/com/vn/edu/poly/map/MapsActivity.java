@@ -1,11 +1,11 @@
 package com.vn.edu.poly.map;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.github.pavlospt.CircleView;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -38,10 +39,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private TextView txtvTenQG;
     private ImageView imgIcon;
     private TextView txtvTrangThai;
-    private com.github.pavlospt.CircleView txtvNhietDo;
+    private CircleView txtvNhietDo;
     private TextView txtvDoAm;
     private TextView txtvGio;
     private ImageButton btnXem;
+    private ImageButton btnHD;
 
 
 
@@ -53,9 +55,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
         initView();
 
     }
+
 
     private void getData(String data) {
 
@@ -71,59 +75,72 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             String name = jsonObject.getString("name");
 
 
-
                             JSONArray jsonArrayWeather = jsonObject.getJSONArray("weather");
                             JSONObject jsonObjectWeather = jsonArrayWeather.getJSONObject(0);
                             String status = jsonObjectWeather.getString("main");
                             String icon = jsonObjectWeather.getString("icon");
 
-                            Log.d("trangthai", "trang thai la: "+status );
-                            Log.d("icon", icon );
-                            switch (status){
-                                case "Rain": txtvTrangThai.setText("Trời mưa");
-                                break;
-                                case "Clouds": txtvTrangThai.setText("Trời nhiều mây");
-                                break;
-                                case "Clear": txtvTrangThai.setText("Trời quang");
-                                break;
-                                case "Mist": txtvTrangThai.setText("Sương mù");
-                                break;
-                                default: txtvTrangThai.setText(status);
+                            Log.d("trangthai", "trang thai la: " + status);
+                            Log.d("icon", icon);
+                            switch (status) {
+                                case "Rain":
+                                    txtvTrangThai.setText("Trời mưa");
+                                    break;
+                                case "Clouds":
+                                    txtvTrangThai.setText("Trời nhiều mây");
+                                    break;
+                                case "Clear":
+                                    txtvTrangThai.setText("Trời quang");
+                                    break;
+                                case "Mist":
+                                    txtvTrangThai.setText("Sương mù");
+                                    break;
+                                default:
+                                    txtvTrangThai.setText(status);
                             }
 
-                            switch (icon){
+                            switch (icon) {
 
-                                case "01d": imgIcon.setImageResource(R.drawable.mattroi);
+                                case "01d":
+                                    imgIcon.setImageResource(R.drawable.mattroi);
                                     break;
-                                case "04d": imgIcon.setImageResource(R.drawable.cloud);
+                                case "04d":
+                                    imgIcon.setImageResource(R.drawable.cloud);
                                     break;
-                                case "03n": imgIcon.setImageResource(R.drawable.cloud);
+                                case "03n":
+                                    imgIcon.setImageResource(R.drawable.cloud);
                                     break;
-                                case "09d": imgIcon.setImageResource(R.drawable.rain);
+                                case "09d":
+                                    imgIcon.setImageResource(R.drawable.rain);
                                     break;
-                                case "10d": imgIcon.setImageResource(R.drawable.may_mua_mattroi);
+                                case "10d":
+                                    imgIcon.setImageResource(R.drawable.may_mua_mattroi);
                                     break;
 
-                                case "04n": imgIcon.setImageResource(R.drawable.cloudy);
+                                case "04n":
+                                    imgIcon.setImageResource(R.drawable.cloudy);
                                     break;
-                                case "01n": imgIcon.setImageResource(R.drawable.moon);
+                                case "01n":
+                                    imgIcon.setImageResource(R.drawable.moon);
                                     break;
-                                case "02n": imgIcon.setImageResource(R.drawable.moon);
+                                case "02n":
+                                    imgIcon.setImageResource(R.drawable.moon);
                                     break;
-                                    //may mua mat trang
+                                //may mua mat trang
 
-                                case "10n": imgIcon.setImageResource(R.drawable.rain);
+                                case "10n":
+                                    imgIcon.setImageResource(R.drawable.rain);
                                     break;
-                                case "50n": imgIcon.setImageResource(R.drawable.fog);
+                                case "50n":
+                                    imgIcon.setImageResource(R.drawable.fog);
                                     break;
-                                case "50d": imgIcon.setImageResource(R.drawable.fog);
+                                case "50d":
+                                    imgIcon.setImageResource(R.drawable.fog);
                                     break;
 
                                 default:
                                     Picasso.with(MapsActivity.this).load("https://openweathermap.org/img/w/" + icon + ".png").into(imgIcon);
                             }
-
-
 
 
 //                            if(icon.equalsIgnoreCase("10d")){
@@ -140,22 +157,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //                            }
 
 
-
-
                             JSONObject jsonObjectMain = jsonObject.getJSONObject("main");
                             String nhietDo = jsonObjectMain.getString("temp");
                             String doAm = jsonObjectMain.getString("humidity");
 
-                            txtvDoAm.setText(  doAm + "%");
-                            txtvNhietDo.setTitleText( nhietDo + " °C");
+                            txtvDoAm.setText(doAm + "%");
+                            txtvNhietDo.setTitleText(nhietDo + " °C");
 
                             JSONObject jsonObjectSys = jsonObject.getJSONObject("sys");
                             String country = jsonObjectSys.getString("country");
-                            txtvTenTP.setText("Thành phố: " + name +" , " +country);
+                            txtvTenTP.setText("Thành phố: " + name + " , " + country);
 
                             JSONObject jsonObjectWind = jsonObject.getJSONObject("wind");
                             String gio = jsonObjectWind.getString("speed");
-                            txtvGio.setText(  gio + " m/s");
+                            txtvGio.setText(gio + " m/s");
 
                             JSONObject jsonObjectCoord = jsonObject.getJSONObject("coord");
                             double lon = jsonObjectCoord.getDouble("lon");
@@ -207,10 +222,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 String city = edtSearch.getText().toString();
-                Intent intent = new Intent(MapsActivity.this,ListWeatherActivity.class);
-                intent.putExtra("tenTP",city);
+                Intent intent = new Intent(MapsActivity.this, ListWeatherActivity.class);
+                intent.putExtra("tenTP", city);
                 startActivity(intent);
 
+            }
+        });
+        btnHD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog dialog = new Dialog(MapsActivity.this);
+                dialog.setTitle("Hướng dẫn");
+                dialog.setContentView(R.layout.dialog_hd);
+                dialog.show();
             }
         });
 
@@ -225,10 +249,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        txtvTenQG = (TextView) findViewById(R.id.txtvTenQG);
         imgIcon = (ImageView) findViewById(R.id.imgIcon);
         txtvTrangThai = (TextView) findViewById(R.id.txtvTrangThai);
-        txtvNhietDo =  findViewById(R.id.txtvNhietDo);
+        txtvNhietDo = findViewById(R.id.txtvNhietDo);
         txtvDoAm = (TextView) findViewById(R.id.txtvDoAm);
         txtvGio = (TextView) findViewById(R.id.txtvGio);
-        btnXem =  findViewById(R.id.btnXem);
+        btnXem = findViewById(R.id.btnXem);
+
+        btnHD = (ImageButton) findViewById(R.id.btnHD);
 
     }
 }

@@ -34,6 +34,14 @@
                 android:src="@drawable/search"
                 android:background="@color/colorbackgrond"
                 android:id="@+id/btnSearch"/>
+            <ImageButton
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/hdicon"
+                android:background="@color/colorbackgrond"
+                android:id="@+id/btnHD"/>
 
         </LinearLayout>
 
@@ -61,8 +69,8 @@
         <ImageView
             android:id="@+id/imgIcon"
             android:layout_marginRight="4dp"
-            android:layout_width="250dp"
-            android:layout_height="160dp"
+            android:layout_width="280dp"
+            android:layout_height="170dp"
             android:layout_gravity="center_horizontal"
             android:contentDescription="@string/app_name"
             android:layout_marginTop="24dp"
@@ -71,7 +79,7 @@
             android:id="@+id/txtvTrangThai"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:textSize="30dp"
+            android:textSize="35dp"
             android:textColor="@color/colorWhite"
             android:layout_marginTop="8dp"
             android:gravity="center"
@@ -144,7 +152,7 @@
                     android:background="@android:color/transparent"
                     android:elevation="4dp"
                     android:layout_marginTop="12dp"
-                    android:src="@drawable/cross"/>
+                    android:src="@drawable/addicon"/>
 
             </LinearLayout>
 

@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Weather</string>
-    <string name="title_activity_maps">Weather</string>
+    <string name="app_name">Thời tiết 24h tới</string>
+    <string name="title_activity_maps">Thời tiết</string>
     <string name="city_country"></string>
     <string name="date_today"></string>
     <string name="current_temperature">0</string>
@@ -17,4 +17,7 @@
     <string name="stored_location">You can only store 5 locations</string>
     <string name="permission_notice">This permission is important but you can as well set your location on Location page</string>
     <string name="go_to_location">Go to location setting</string>
+    <string name="huongdan1"> - Bạn cần nhập chính xác tên tiếng Anh của thành phố bạn muốn xem thời tiết</string>
+    <string name="huongdan2">- Sau khi nhập chính xác tên thành phố, thông tin về thời tiết và địa lí của thành phố sẽ hiện ra</string>
+    <string name="huongdan3">- Nhấn vào biểu tượng dấu cộng để xem thông tin thời tiết 24h tới</string>
 </resources>
