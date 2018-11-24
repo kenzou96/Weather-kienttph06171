@@ -95,6 +95,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 case "Mist":
                                     txtvTrangThai.setText("Sương mù");
                                     break;
+                                case "Haze":
+                                    txtvTrangThai.setText("Sương mù");
+                                    break;
                                 default:
                                     txtvTrangThai.setText(status);
                             }
@@ -102,6 +105,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             switch (icon) {
 
                                 case "01d":
+                                    imgIcon.setImageResource(R.drawable.mattroi);
+                                    break;
+                                case "02d":
                                     imgIcon.setImageResource(R.drawable.mattroi);
                                     break;
                                 case "04d":
