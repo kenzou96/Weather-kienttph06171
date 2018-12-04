@@ -5,6 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
-    tools:context=".ChaoActivity">
+    tools:context=".OneDayNextActivity">
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lv7day">
+
+    </ListView>
 
 </android.support.constraint.ConstraintLayout>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Thời tiết 24h tới</string>
+    <string name="app_name">Dự báo thời tiết</string>
     <string name="title_activity_maps">Thời tiết</string>
     <string name="city_country"></string>
     <string name="date_today"></string>

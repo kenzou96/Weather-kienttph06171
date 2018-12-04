@@ -1,15 +1,20 @@
 package com.vn.edu.poly.map;
 
+import android.app.AlertDialog;
+
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
+
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -30,6 +35,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -42,7 +49,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private CircleView txtvNhietDo;
     private TextView txtvDoAm;
     private TextView txtvGio;
-    private ImageButton btnXem;
+//    private ImageButton btnXem;
     private ImageButton btnHD;
 
 
@@ -110,6 +117,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 case "02d":
                                     imgIcon.setImageResource(R.drawable.mattroi);
                                     break;
+                                case "03d":
+                                    imgIcon.setImageResource(R.drawable.cloudy);
+                                    break;
                                 case "04d":
                                     imgIcon.setImageResource(R.drawable.cloud);
                                     break;
@@ -131,6 +141,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     break;
                                 case "02n":
                                     imgIcon.setImageResource(R.drawable.moon);
+                                    break;
+                                case "09n":
+                                    imgIcon.setImageResource(R.drawable.rain);
                                     break;
                                 //may mua mat trang
 
@@ -224,16 +237,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             }
         });
-        btnXem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String city = edtSearch.getText().toString();
-                Intent intent = new Intent(MapsActivity.this, ListWeatherActivity.class);
-                intent.putExtra("tenTP", city);
-                startActivity(intent);
-
-            }
-        });
+//        btnXem.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String city = edtSearch.getText().toString();
+//                Intent intent = new Intent(MapsActivity.this, ListWeatherActivity.class);
+//                intent.putExtra("tenTP", city);
+//                startActivity(intent);
+//
+//            }
+//        });
         btnHD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -258,9 +271,50 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         txtvNhietDo = findViewById(R.id.txtvNhietDo);
         txtvDoAm = (TextView) findViewById(R.id.txtvDoAm);
         txtvGio = (TextView) findViewById(R.id.txtvGio);
-        btnXem = findViewById(R.id.btnXem);
+//        btnXem = findViewById(R.id.btnXem);
 
         btnHD = (ImageButton) findViewById(R.id.btnHD);
 
+    }
+    public void showAlertListDialog(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final String[] lop = {"24h tới","48h tới","72h tới","96h tới", "120h tới"};
+        builder.setTitle("Dự báo");
+        builder.setItems(lop, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String city = edtSearch.getText().toString();
+                if(i==0) {
+                    Intent intent = new Intent(MapsActivity.this, ListWeatherActivity.class);
+                    intent.putExtra("tenTP", city);
+                    startActivity(intent);
+                }
+                else if(i==1) {
+                    Intent intent = new Intent(MapsActivity.this, OneDayNextActivity.class);
+                    intent.putExtra("tenTP", city);
+                    startActivity(intent);
+                }
+                else if(i==2) {
+                    Intent intent = new Intent(MapsActivity.this, TwoDayNextActivity.class);
+                    intent.putExtra("tenTP", city);
+                    startActivity(intent);
+                }
+                else if(i==3) {
+                    Intent intent = new Intent(MapsActivity.this, ThreeDayNextActivity.class);
+                    intent.putExtra("tenTP", city);
+                    startActivity(intent);
+                }
+                else if(i==4) {
+                    Intent intent = new Intent(MapsActivity.this, FourDayNextActivity.class);
+                    intent.putExtra("tenTP", city);
+                    startActivity(intent);
+                }
+
+                Toast.makeText(MapsActivity.this, lop[i], Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        builder.show();
     }
 }
